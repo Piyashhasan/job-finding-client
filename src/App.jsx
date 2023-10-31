@@ -1,9 +1,15 @@
 import "./App.css";
+import { RouterProvider } from "react-router-dom";
+import routes from "./routes/routes";
+import { Provider } from "react-redux";
+import store from "./app/store";
 
 function App() {
   return (
     <>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
+      <Provider store={store}>
+        <RouterProvider router={routes} />
+      </Provider>
     </>
   );
 }
