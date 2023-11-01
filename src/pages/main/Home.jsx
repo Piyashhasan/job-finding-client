@@ -1,5 +1,6 @@
 import Lottie from "lottie-react";
 import picture from "../../assets/img-json/home-page-animation.json";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -17,9 +18,11 @@ const Home = () => {
             Unlock your potential with quality job & earn from world leading
             brands & co.
           </p>
-          <button className="bg-[#00bf58] mt-5 py-3 px-10 rounded-full text-white hover:bg-[#244034] cursor-pointer">
-            Find Jobs
-          </button>
+          <Link to="/jobs">
+            <button className="bg-[#00bf58] mt-5 py-3 px-10 rounded-full text-white hover:bg-[#244034] cursor-pointer">
+              Find Jobs
+            </button>
+          </Link>
         </div>
         {/* --- left side end --- */}
 
@@ -36,4 +39,3 @@ const Home = () => {
 };
 
 export default Home;
-

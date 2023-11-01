@@ -1,30 +1,11 @@
 import Lottie from "lottie-react";
 import loginAnimation from "../../assets/img-json/login-animation.json";
 import { useForm } from "react-hook-form";
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 
-const Login = () => {
-  const { handleSubmit, register, watch } = useForm();
-
-  const password = watch("password");
-  const confirmPassword = watch("confirmPassword");
-  const [btnDisable, setBtnDisable] = useState(false);
-
-  useEffect(() => {
-    if (
-      password !== undefined &&
-      password !== "" &&
-      confirmPassword !== undefined &&
-      confirmPassword !== "" &&
-      password === confirmPassword
-    ) {
-      setBtnDisable(true);
-    } else {
-      setBtnDisable(false);
-    }
-  }, [password, confirmPassword]);
+const SignIn = () => {
+  const { handleSubmit, register } = useForm();
 
   const onSubmit = (data) => {
     // Handle form submission here
@@ -47,7 +28,7 @@ const Login = () => {
           <div className="text-center my-5">
             <h1 className="text-[30px] text-black">Hi, Welcome Back!</h1>
             <p className="text-[16px]">
-              Still do not have an account? <Link to="/sign-up">Sign Up</Link>{" "}
+              Still do not have an account? <Link className="underline" to="/sign-up">Sign Up</Link>{" "}
             </p>
           </div>
           <form onSubmit={handleSubmit(onSubmit)}>
@@ -73,36 +54,13 @@ const Login = () => {
               </div>
             </div>
 
-            <div className="mb-5 space-y-2">
-              <label className="font-bold text-gray-700">
-                Confirm Password
-              </label>
-              <div className="">
-                <input
-                  className="w-full px-5 py-3 outline-0 rounded-md"
-                  placeholder="Enter Confirm Password"
-                  {...register("confirmPassword", { required: true })}
-                />
-              </div>
-            </div>
-
             <div className="">
-              {btnDisable ? (
-                <button
-                  className="bg-[#00BF58] px-4 py-3 w-full text-white rounded-md font-semibold"
-                  type="submit"
-                >
-                  LOGIN
-                </button>
-              ) : (
-                <button
-                  className="bg-[#31795a] px-4 py-3 w-full text-white rounded-md font-semibold"
-                  type="submit"
-                  disabled
-                >
-                  LOGIN
-                </button>
-              )}
+              <button
+                className="bg-[#00BF58] px-4 py-3 w-full text-white rounded-md font-semibold"
+                type="submit"
+              >
+                LOGIN
+              </button>
             </div>
           </form>
 
@@ -129,4 +87,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignIn;

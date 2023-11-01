@@ -51,7 +51,7 @@ const NavBar = () => {
                 Jobs
               </NavLink>
             </li>
-            <li className="nav-item" onClick={closeMobileNav}>
+            {/* <li className="nav-item" onClick={closeMobileNav}>
               <NavLink
                 to="/sign-in"
                 className={({ isActive }) =>
@@ -62,18 +62,18 @@ const NavBar = () => {
               >
                 Login
               </NavLink>
-            </li>
+            </li> */}
             <li
               className="nav-item bg-[#00bf58] py-3 px-5 rounded-full text-white hover:bg-[#244034] cursor-pointer"
               onClick={closeMobileNav}
             >
               <NavLink
-                to="/sign-up"
+                to="/sign-in"
                 className={({ isActive }) =>
                   isActive ? "font-bold" : "font-bold"
                 }
               >
-                Sign Up
+                Sign In
               </NavLink>
             </li>
             {/* <li className="nav-item" onClick={closeMobileNav}>
