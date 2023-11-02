@@ -10,6 +10,8 @@ import JobDetails from "../pages/main/JobDetails";
 import GetStart from "../pages/main/GetStart";
 import Candidate from "../pages/main/Candidate";
 import Employer from "../pages/main/Employer";
+import UserProfile from "../pages/dashboard/UserProfile";
+import Check from "../pages/dashboard/Check";
 
 const routes = createBrowserRouter([
   {
@@ -53,7 +55,16 @@ const routes = createBrowserRouter([
   {
     path: "/dashboard",
     element: <Dashboard />,
-    children: [],
+    children: [
+      {
+        path: "/dashboard",
+        element: <UserProfile />,
+      },
+      {
+        path: "/dashboard/check",
+        element: <Check />,
+      },
+    ],
   },
   {
     path: "*",

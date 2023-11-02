@@ -81,7 +81,7 @@ const NavBar = () => {
               </NavLink>
             </li>
 
-            {/* <li className="nav-item" onClick={closeMobileNav}>
+            <li className="nav-item" onClick={closeMobileNav}>
               <NavLink
                 to="/dashboard"
                 className={({ isActive }) =>
@@ -92,7 +92,7 @@ const NavBar = () => {
               >
                 Dashboard
               </NavLink>
-            </li> */}
+            </li>
           </ul>
         </div>
 
