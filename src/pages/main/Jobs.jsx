@@ -23,8 +23,6 @@ const Jobs = () => {
         <div className="grid grid-cols-1 gap-5 lg:grid lg:grid-cols-2 my-5">
           <JobCard />
           <JobCard />
-          <JobCard />
-          <JobCard />
         </div>
         {/* --- job card end --- */}
       </div>

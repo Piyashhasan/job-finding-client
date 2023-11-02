@@ -24,7 +24,7 @@ const NavBar = () => {
             className={
               click
                 ? "nav nav_menu active"
-                : "nav nav_menu flex items-center justify-between space-x-8 "
+                : "nav nav_menu flex items-center justify-between space-x-5"
             }
           >
             <li className="nav-item " onClick={closeMobileNav}>
@@ -51,33 +51,36 @@ const NavBar = () => {
                 Jobs
               </NavLink>
             </li>
-            
-              <li
-                className="nav-item bg-[#00bf58] py-3 px-5 rounded-full text-white hover:bg-[#244034] cursor-pointer"
-                onClick={closeMobileNav}
-              >
-                <NavLink
-                  to="/sign-in"
-                  className={({ isActive }) =>
-                    isActive ? "font-bold" : "font-bold"
-                  }
-                >
-                  Sign In
-                </NavLink>
-              </li>
-         
-            {/* <li className="nav-item" onClick={closeMobileNav}>
+            <li
+              className="nav-item nav-item bg-[#00bf58] py-2 px-5 rounded-full text-white hover:bg-[#244034] cursor-pointer"
+              onClick={closeMobileNav}
+            >
               <NavLink
-                to="/"
+                to="/get-start"
                 className={({ isActive }) =>
                   isActive
-                    ? "font-bold activeLink"
-                    : "font-bold hover:text-green-500"
+                    ? "font-bold "
+                    : "font-bold "
                 }
               >
-                Get Start
+                Get-Start
               </NavLink>
-            </li> */}
+            </li>
+
+            <li
+              className="nav-item bg-[#00bf58] py-2 px-5 rounded-full text-white hover:bg-[#244034] cursor-pointer"
+              onClick={closeMobileNav}
+            >
+              <NavLink
+                to="/sign-in"
+                className={({ isActive }) =>
+                  isActive ? "font-bold" : "font-bold"
+                }
+              >
+                Sign In
+              </NavLink>
+            </li>
+
             {/* <li className="nav-item" onClick={closeMobileNav}>
               <NavLink
                 to="/dashboard"

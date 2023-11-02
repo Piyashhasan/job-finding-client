@@ -7,6 +7,9 @@ import SignIn from "../pages/main/SignIn";
 import SignUp from "../pages/main/SignUp";
 import Jobs from "../pages/main/Jobs";
 import JobDetails from "../pages/main/JobDetails";
+import GetStart from "../pages/main/GetStart";
+import Candidate from "../pages/main/Candidate";
+import Employer from "../pages/main/Employer";
 
 const routes = createBrowserRouter([
   {
@@ -24,6 +27,18 @@ const routes = createBrowserRouter([
       {
         path: "/job-details",
         element: <JobDetails />,
+      },
+      {
+        path: "/get-start",
+        element: <GetStart />,
+      },
+      {
+        path: "/candidate",
+        element: <Candidate />,
+      },
+      {
+        path: "/employer",
+        element: <Employer />,
       },
       {
         path: "/sign-in",
