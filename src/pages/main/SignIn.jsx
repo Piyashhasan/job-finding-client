@@ -24,11 +24,14 @@ const SignIn = () => {
         {/* --- left side end --- */}
 
         {/* --- right side FORM start --- */}
-        <div className="bg-green-200 px-16 py-5  shadow-xl rounded-2xl mx-10">
-          <div className="text-center my-5">
+        <div className="bg-green-200 px-16 py-10  shadow-xl rounded-2xl mx-10">
+          <div className="text-center mb-5">
             <h1 className="text-[30px] text-black">Hi, Welcome Back!</h1>
             <p className="text-[16px]">
-              Still do not have an account? <Link className="underline" to="/sign-up">Sign Up</Link>{" "}
+              Still do not have an account?{" "}
+              <Link className="underline" to="/sign-up">
+                Sign Up
+              </Link>{" "}
             </p>
           </div>
           <form onSubmit={handleSubmit(onSubmit)}>
@@ -47,7 +50,8 @@ const SignIn = () => {
               <label className="font-bold text-gray-700">Password</label>
               <div className="">
                 <input
-                  className="w-full px-5 py-3 outline-0 rounded-md  "
+                  className="w-full px-5 py-3 outline-0 rounded-md"
+                  type="password"
                   placeholder="Enter Password"
                   {...register("password", { required: true })}
                 />

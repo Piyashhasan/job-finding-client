@@ -54,7 +54,7 @@ const SignUp = () => {
 
         {/* --- right side FORM start --- */}
         <div className="bg-green-200 px-16 py-5  shadow-xl rounded-2xl mx-10">
-          <div className="text-center my-5">
+          <div className="text-center mb-5">
             <h1 className="text-[30px] text-black">Create Account</h1>
             <p className="text-[16px]">
               Already have an account?{" "}
@@ -80,6 +80,7 @@ const SignUp = () => {
               <div className="">
                 <input
                   className="w-full px-5 py-3 outline-0 rounded-md  "
+                  type="password"
                   placeholder="Enter Password"
                   {...register("password", { required: true })}
                 />
@@ -93,6 +94,7 @@ const SignUp = () => {
               <div className="">
                 <input
                   className="w-full px-5 py-3 outline-0 rounded-md"
+                  type="password"
                   placeholder="Enter Confirm Password"
                   {...register("confirmPassword", { required: true })}
                 />

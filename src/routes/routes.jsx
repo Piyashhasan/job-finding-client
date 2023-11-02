@@ -6,6 +6,7 @@ import Dashboard from "../layout/Dashboard/Dashboard";
 import SignIn from "../pages/main/SignIn";
 import SignUp from "../pages/main/SignUp";
 import Jobs from "../pages/main/Jobs";
+import JobDetails from "../pages/main/JobDetails";
 
 const routes = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const routes = createBrowserRouter([
       {
         path: "/jobs",
         element: <Jobs />,
+      },
+      {
+        path: "/job-details",
+        element: <JobDetails />,
       },
       {
         path: "/sign-in",
