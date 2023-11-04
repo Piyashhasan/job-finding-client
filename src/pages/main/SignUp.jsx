@@ -1,23 +1,25 @@
-// const SignUp = () => {
-//   return (
-//     <div className="container">
-//       <h1>Sign up page</h1>
-//     </div>
-//   );
-// };
-
-// export default SignUp;
-
 import Lottie from "lottie-react";
 import loginAnimation from "../../assets/img-json/login-animation.json";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
+import {
+  createUserEmailPassword,
+  googleAuth,
+  handleErrorMessage,
+} from "../../features/auth/authSlice";
+import { useDispatch, useSelector } from "react-redux";
+import toast from "react-hot-toast";
 
 const SignUp = () => {
-  const { handleSubmit, register, watch } = useForm();
+  const { isLoading, isSuccess, email, isError, error } = useSelector(
+    (state) => state.auth
+  );
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
+  const { handleSubmit, register, watch, reset } = useForm();
   const password = watch("password");
   const confirmPassword = watch("confirmPassword");
   const [btnDisable, setBtnDisable] = useState(false);
@@ -36,9 +38,26 @@ const SignUp = () => {
     }
   }, [password, confirmPassword]);
 
+  useEffect(() => {
+    if (!isLoading && isSuccess && email) {
+      toast.success("Successfully Sign up..", { id: "auth" });
+      navigate("/");
+    }
+    if (!email && isError && error) {
+      toast.error(error, { id: "auth" });
+      dispatch(handleErrorMessage());
+    }
+  }, [isLoading, isSuccess, email, isError, error, navigate, dispatch]);
+
   const onSubmit = (data) => {
-    // Handle form submission here
-    console.log(data);
+    const { email, password } = data;
+    dispatch(createUserEmailPassword({ email, password }));
+    reset();
+  };
+
+  // --- handle google auth ---
+  const handleGoogleAuth = () => {
+    dispatch(googleAuth());
   };
 
   return (
@@ -107,7 +126,7 @@ const SignUp = () => {
                   className="bg-[#00BF58] px-4 py-3 w-full text-white rounded-md font-semibold"
                   type="submit"
                 >
-                  LOGIN
+                  Sign Up
                 </button>
               ) : (
                 <button
@@ -115,7 +134,7 @@ const SignUp = () => {
                   type="submit"
                   disabled
                 >
-                  LOGIN
+                  Sign Up
                 </button>
               )}
             </div>
@@ -131,7 +150,10 @@ const SignUp = () => {
 
           {/* google login button start */}
           <div className="mt-5">
-            <button className="bg-white w-full py-4 rounded-md font-semibold flex items-center justify-center space-x-3">
+            <button
+              onClick={handleGoogleAuth}
+              className="bg-white w-full py-4 rounded-md font-semibold flex items-center justify-center space-x-3"
+            >
               <FcGoogle className="text-2xl" />
               <span>Login with Google</span>
             </button>

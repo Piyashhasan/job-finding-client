@@ -4,11 +4,31 @@ import { Link, NavLink } from "react-router-dom";
 import { ImCross } from "react-icons/im";
 import { GiHamburgerMenu } from "react-icons/gi";
 import logo from "../../assets/img/logo.png";
+import { useDispatch, useSelector } from "react-redux";
+import auth from "../../firebase/firebase.config";
+import { signOut } from "firebase/auth";
+import { logOut } from "../../features/auth/authSlice";
+import toast from "react-hot-toast";
 
 const NavBar = () => {
+  const { email, role } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+
   const [click, setClick] = useState(false);
   const closeMobileNav = () => {
     setClick(false);
+  };
+
+  const handleSignOut = () => {
+    signOut(auth)
+      .then(() => {
+        dispatch(logOut());
+        toast.success("Successfully Log out..", { id: "auth" });
+      })
+      .catch((error) => {
+        console.log("error from logOut handler button");
+        console.log(error);
+      });
   };
 
   return (
@@ -51,23 +71,68 @@ const NavBar = () => {
                 Jobs
               </NavLink>
             </li>
-            <li
-              className="nav-item nav-item bg-[#00bf58] py-2 px-5 rounded-full text-white hover:bg-[#244034] cursor-pointer"
-              onClick={closeMobileNav}
-            >
-              <NavLink
-                to="/get-start"
-                className={({ isActive }) =>
-                  isActive
-                    ? "font-bold "
-                    : "font-bold "
-                }
+            {email && !role && (
+              <li
+                className="nav-item nav-item bg-[#00bf58] py-2 px-5 rounded-full text-white hover:bg-[#244034] cursor-pointer"
+                onClick={closeMobileNav}
               >
-                Get-Start
-              </NavLink>
-            </li>
+                <NavLink
+                  to="/get-start"
+                  className={({ isActive }) =>
+                    isActive ? "font-bold " : "font-bold "
+                  }
+                >
+                  Get-Start
+                </NavLink>
+              </li>
+            )}
 
-            <li
+            {email && role && (
+              <li className="nav-item" onClick={closeMobileNav}>
+                <NavLink
+                  to="/dashboard"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "font-bold activeLink"
+                      : "font-bold hover:text-green-500"
+                  }
+                >
+                  Dashboard
+                </NavLink>
+              </li>
+            )}
+
+            {email ? (
+              <li
+                className="nav-item bg-[#00bf58] py-2 px-5 rounded-full text-white hover:bg-[#244034] cursor-pointer"
+                onClick={closeMobileNav}
+              >
+                <NavLink
+                  to="/"
+                  className={({ isActive }) =>
+                    isActive ? "font-bold" : "font-bold"
+                  }
+                  onClick={handleSignOut}
+                >
+                  Logout
+                </NavLink>
+              </li>
+            ) : (
+              <li
+                className="nav-item bg-[#00bf58] py-2 px-5 rounded-full text-white hover:bg-[#244034] cursor-pointer"
+                onClick={closeMobileNav}
+              >
+                <NavLink
+                  to="/sign-in"
+                  className={({ isActive }) =>
+                    isActive ? "font-bold" : "font-bold"
+                  }
+                >
+                  Sign In
+                </NavLink>
+              </li>
+            )}
+            {/* <li
               className="nav-item bg-[#00bf58] py-2 px-5 rounded-full text-white hover:bg-[#244034] cursor-pointer"
               onClick={closeMobileNav}
             >
@@ -79,20 +144,7 @@ const NavBar = () => {
               >
                 Sign In
               </NavLink>
-            </li>
-
-            <li className="nav-item" onClick={closeMobileNav}>
-              <NavLink
-                to="/dashboard"
-                className={({ isActive }) =>
-                  isActive
-                    ? "font-bold activeLink"
-                    : "font-bold hover:text-green-500"
-                }
-              >
-                Dashboard
-              </NavLink>
-            </li>
+            </li> */}
           </ul>
         </div>
 

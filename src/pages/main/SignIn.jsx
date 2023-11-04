@@ -1,15 +1,47 @@
 import Lottie from "lottie-react";
 import loginAnimation from "../../assets/img-json/login-animation.json";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  googleAuth,
+  handleErrorMessage,
+  signInUserEmailPassword,
+} from "../../features/auth/authSlice";
+import { useEffect } from "react";
+import toast from "react-hot-toast";
 
 const SignIn = () => {
-  const { handleSubmit, register } = useForm();
+  const { isLoading, isSuccess, email, isError, error } = useSelector(
+    (state) => state.auth
+  );
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { handleSubmit, register, reset } = useForm();
+
+  useEffect(() => {
+    if (!isLoading && isSuccess && email) {
+      toast.success("Successfully Sign in..", { id: "auth" });
+      navigate("/");
+    }
+    if (!email && isError && error) {
+      toast.error(error, { id: "auth" });
+      dispatch(handleErrorMessage());
+    }
+  }, [isLoading, isSuccess, email, isError, error, navigate, dispatch]);
 
   const onSubmit = (data) => {
     // Handle form submission here
-    console.log(data);
+    const { email, password } = data;
+    dispatch(signInUserEmailPassword({ email, password }));
+    reset();
+  };
+
+  // --- google auth ---
+  const handleGoogleAuth = () => {
+    dispatch(googleAuth());
   };
 
   return (
@@ -78,7 +110,10 @@ const SignIn = () => {
 
           {/* google login button start */}
           <div className="mt-5">
-            <button className="bg-white w-full py-4 rounded-md font-semibold flex items-center justify-center space-x-3">
+            <button
+              onClick={handleGoogleAuth}
+              className="bg-white w-full py-4 rounded-md font-semibold flex items-center justify-center space-x-3"
+            >
               <FcGoogle className="text-2xl" />
               <span>Login with Google</span>
             </button>
