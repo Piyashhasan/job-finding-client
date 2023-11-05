@@ -12,6 +12,7 @@ import Candidate from "../pages/main/Candidate";
 import Employer from "../pages/main/Employer";
 import UserProfile from "../pages/dashboard/UserProfile";
 import Check from "../pages/dashboard/Check";
+import PrivateRoute from "../components/PrivateRoute/PrivateRoute";
 
 const routes = createBrowserRouter([
   {
@@ -32,7 +33,11 @@ const routes = createBrowserRouter([
       },
       {
         path: "/get-start",
-        element: <GetStart />,
+        element: (
+          <PrivateRoute>
+            <GetStart />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/candidate",
@@ -58,11 +63,19 @@ const routes = createBrowserRouter([
     children: [
       {
         path: "/dashboard",
-        element: <UserProfile />,
+        element: (
+          <PrivateRoute>
+            <UserProfile />,
+          </PrivateRoute>
+        ),
       },
       {
         path: "/dashboard/check",
-        element: <Check />,
+        element: (
+          <PrivateRoute>
+            <Check />,
+          </PrivateRoute>
+        ),
       },
     ],
   },

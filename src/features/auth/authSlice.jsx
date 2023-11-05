@@ -11,7 +11,7 @@ import auth from "../../firebase/firebase.config";
 const initialState = {
   email: "",
   role: "",
-  isLoading: false,
+  isLoading: true,
   isSuccess: false,
   isError: false,
   error: "",
@@ -66,6 +66,9 @@ const authSlice = createSlice({
       state.isSuccess = false;
       state.isError = false;
       state.error = "";
+    },
+    toggleLoading: (state) => {
+      state.isLoading = false;
     },
   },
   extraReducers: (builder) => {
@@ -146,7 +149,8 @@ const authSlice = createSlice({
 });
 
 // --- action export ---
-export const { logOut, setUser, handleErrorMessage } = authSlice.actions;
+export const { logOut, setUser, handleErrorMessage, toggleLoading } =
+  authSlice.actions;
 
 // --- reducer export ---
 export default authSlice.reducer;

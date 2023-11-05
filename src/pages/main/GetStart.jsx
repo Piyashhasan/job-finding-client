@@ -3,6 +3,7 @@ import candidate from "../../assets/img/candidates.svg";
 import employer from "../../assets/img/employer.svg";
 
 const GetStart = () => {
+  // console.log('get start')
   return (
     <div className="container my-10">
       <div>

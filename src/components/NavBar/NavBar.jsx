@@ -71,6 +71,8 @@ const NavBar = () => {
                 Jobs
               </NavLink>
             </li>
+            
+
             {email && !role && (
               <li
                 className="nav-item nav-item bg-[#00bf58] py-2 px-5 rounded-full text-white hover:bg-[#244034] cursor-pointer"
@@ -101,6 +103,8 @@ const NavBar = () => {
                 </NavLink>
               </li>
             )}
+
+     
 
             {email ? (
               <li
